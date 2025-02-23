@@ -1,0 +1,1146 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../assets/fonts/Comfortaa\ Variable\ Font.ttf') format('truetype');
+    font-weight: 300 700;
+    font-display: swap;
+}
+
+:root {
+    --primary-blue: #18448D;
+    --secondary-grey: #2C2D32;
+    --teal-blue: #0C5E7C;
+    --background: #FFFFFF;
+    
+    /* Дополнительные переменные для отступов и типографики */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    
+    --transition-speed: 0.3s;
+    
+    /* Добавляем переменные для шрифтов */
+    --heading-font: 'Inter', sans-serif;
+    --body-font: 'Comfortaa', sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    font-family: var(--body-font);
+    line-height: 1.6;
+    color: var(--secondary-grey);
+    overflow-x: hidden;
+    overflow-y: auto; /* Возвращаем стандартный скролл */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* Стили для hero секции */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    overflow-x: hidden;
+}
+
+.hero__container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 0;
+    align-items: center;
+    position: relative;
+}
+
+.hero__content {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInLeft 0.8s ease forwards;
+}
+
+.hero__title {
+    margin-bottom: var(--spacing-md);
+}
+
+.hero__title-small {
+    display: block;
+    font-family: var(--heading-font);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-xs);
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+.hero__title-large {
+    font-family: var(--heading-font);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-xs);
+}
+
+.hero__title-medium {
+    font-family: var(--heading-font);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.hero__text {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--secondary-grey);
+    max-width: 95%;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+.hero__logo {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideInRight 0.8s ease forwards;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 130%;
+}
+
+.hero__logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+    transform: scale(2.2);
+}
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Стили для секции ролей */
+.roles {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    background: linear-gradient(180deg, var(--background) 0%, rgba(24, 68, 141, 0.03) 100%);
+    margin-top: -10vh;
+}
+
+.roles__container {
+    text-align: center;
+    max-width: 1200px;
+}
+
+.roles__content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.roles__content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.roles__title {
+    font-family: var(--heading-font);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.roles__title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--teal-blue);
+    border-radius: 2px;
+}
+
+.roles__text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--secondary-grey);
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Обновленные стили для карточек */
+.roles__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding: 0 2rem;
+}
+
+.role-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 10px 20px rgba(24, 68, 141, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    border: 1px solid rgba(24, 68, 141, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Обновленный hover эффект */
+.role-card:hover {
+    transform: translateX(15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(24, 68, 141, 0.12);
+    border-color: rgba(24, 68, 141, 0.2);
+    background: linear-gradient(to right, white, rgba(24, 68, 141, 0.02));
+}
+
+/* Обновляем декоративную линию */
+.role-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--primary-blue), var(--teal-blue));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.7;
+}
+
+.role-card:hover::before {
+    width: 6px;
+    opacity: 1;
+}
+
+/* Обновленные стили для иконок и анимаций */
+.role-card__icon-wrapper {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--teal-blue));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(24, 68, 141, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Анимация свечения для иконок */
+.role-card__icon-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.role-card:hover .role-card__icon-wrapper::before {
+    opacity: 1;
+}
+
+/* Стили для SVG иконок */
+.icon-path {
+    fill: none;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: all 0.8s ease;
+}
+
+.icon-circle {
+    fill: none;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: all 0.8s ease;
+}
+
+.icon-inner {
+    fill: none;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: all 0.8s ease;
+    opacity: 0.7;
+}
+
+/* Анимации при наведении */
+.role-card:hover .icon-path {
+    stroke-dashoffset: 0;
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+.role-card:hover .icon-circle {
+    stroke-dashoffset: 0;
+    transform: rotate(180deg);
+}
+
+.role-card:hover .icon-inner {
+    stroke-dashoffset: 0;
+    fill: rgba(255, 255, 255, 0.4);
+}
+
+/* Уникальные стили для каждой карточки */
+.role-card:nth-child(1) .role-card__icon-wrapper {
+    background: linear-gradient(135deg, var(--primary-blue), #2563eb);
+}
+
+.role-card:nth-child(2) .role-card__icon-wrapper {
+    background: linear-gradient(135deg, var(--teal-blue), #0891b2);
+}
+
+.role-card:nth-child(3) .role-card__icon-wrapper {
+    background: linear-gradient(135deg, #1e40af, var(--primary-blue));
+}
+
+/* Улучшенный заголовок */
+.role-card__title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.role-card:hover .role-card__title {
+    transform: translateX(5px);
+}
+
+.role-card__level {
+    font-size: 0.9rem;
+    color: var(--teal-blue);
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    background: rgba(12, 94, 124, 0.08);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(12, 94, 124, 0.1);
+}
+
+.role-card:hover .role-card__level {
+    background: rgba(12, 94, 124, 0.12);
+    transform: scale(1.05);
+}
+
+/* Улучшенные секции */
+.role-card__main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.role-card__section {
+    background: rgba(24, 68, 141, 0.02);
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(24, 68, 141, 0.05);
+}
+
+.role-card__section:hover {
+    background: rgba(24, 68, 141, 0.04);
+    transform: translateY(-5px);
+}
+
+.role-card__section h4 {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 600;
+}
+
+.role-card__section h4::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--teal-blue);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.role-card__section:hover h4::before {
+    transform: scale(1.2);
+}
+
+/* Обновляем стили для списков */
+.role-card__list {
+    list-style: none;
+    padding: 0;
+}
+
+.role-card__list li {
+    margin-bottom: 1rem;
+    padding-left: 1.8rem;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--secondary-grey);
+    transition: all 0.3s ease;
+}
+
+.role-card__list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Иконка для обычных списков (Requirements) */
+.role-card__list li::before {
+    content: '❖';
+    position: absolute;
+    left: 0;
+    color: var(--teal-blue);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* Иконка для Benefits (заменяем звездочку на кристалл/бриллиант) */
+.role-card__section:nth-child(2) .role-card__list li::before {
+    content: '◈';
+    font-size: 1rem;
+    transform: translateY(-1px); /* Небольшая корректировка позиционирования */
+}
+
+/* Иконка для To Keep The Role */
+.role-card__section:nth-child(3) .role-card__list li::before {
+    content: '⬥';
+    font-size: 1.1rem;
+}
+
+/* Анимация при наведении */
+.role-card__list li:hover::before {
+    transform: scale(1.2) translateX(2px);
+}
+
+/* Специальная анимация для Benefits */
+.role-card__section:nth-child(2) .role-card__list li:hover::before {
+    transform: scale(1.2) rotate(45deg);
+    color: var(--primary-blue);
+}
+
+/* Специальная анимация для To Keep The Role */
+.role-card__section:nth-child(3) .role-card__list li:hover::before {
+    transform: scale(1.2) rotate(45deg);
+}
+
+/* Убираем лишние анимации */
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 10px 20px rgba(24, 68, 141, 0.05); }
+    50% { box-shadow: 0 20px 30px rgba(24, 68, 141, 0.1); }
+}
+
+/* Убираем лишние keyframes */
+@keyframes cardReveal {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Обновляем появление карточек */
+.role-card {
+    opacity: 0;
+    animation: cardReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.role-card:nth-child(1) { animation-delay: 0.2s; }
+.role-card:nth-child(2) { animation-delay: 0.4s; }
+.role-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* Стилизуем иконки в заголовках */
+.role-card__icon svg {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 2px 4px rgba(24, 68, 141, 0.2));
+}
+
+/* Добавляем общие стили для всех секций */
+section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+/* Добавляем стили для контейнера с прокруткой */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Удаляем все специфичные стили для секций, связанные со скроллом */
+section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+/* Удаляем все snap-scroll стили */
+html, body {
+    scroll-snap-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.role-card__description {
+    font-size: 1rem;
+    color: var(--secondary-grey);
+    margin: 1rem 0 2rem;
+    line-height: 1.6;
+    padding: 1.2rem 1.5rem;
+    background: linear-gradient(to right, rgba(24, 68, 141, 0.02), rgba(12, 94, 124, 0.02));
+    border-radius: 16px;
+    position: relative;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(12, 94, 124, 0.1);
+}
+
+/* Убираем предыдущий декоративный элемент и добавляем подчеркивание */
+.role-card:hover .role-card__description {
+    background: linear-gradient(to right, rgba(24, 68, 141, 0.04), rgba(12, 94, 124, 0.04));
+    transform: translateX(5px);
+    border-bottom-color: var(--teal-blue);
+}
+
+/* Стили для секции прогресса */
+.progression {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    background: linear-gradient(180deg, rgba(24, 68, 141, 0.03) 0%, rgba(12, 94, 124, 0.02) 100%);
+}
+
+.progression__content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.progression__title {
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.progression__title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--teal-blue);
+    border-radius: 2px;
+}
+
+.progression__items {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.progression__item {
+    display: flex;
+    gap: 4rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(24, 68, 141, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progression__item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 15px 40px rgba(24, 68, 141, 0.1);
+}
+
+.progression__item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--primary-blue), var(--teal-blue));
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.progression__item:hover::before {
+    width: 6px;
+    opacity: 1;
+}
+
+.progression__item-left {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.progression__item-left h3 {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.progression__icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(24, 68, 141, 0.05);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.progression__item:hover .progression__icon {
+    background: rgba(24, 68, 141, 0.1);
+    transform: scale(1.1);
+}
+
+.progression__item-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(24, 68, 141, 0.02);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.progression__item:hover .progression__item-right {
+    background: rgba(24, 68, 141, 0.04);
+}
+
+.progression__item-right p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--secondary-grey);
+}
+
+.progression__item-right strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* Анимация появления элементов */
+.progression__item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: itemReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.progression__item:nth-child(1) { animation-delay: 0.2s; }
+.progression__item:nth-child(2) { animation-delay: 0.4s; }
+.progression__item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes itemReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Обновляем стили для иконок прогресса */
+.progression__icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.progression__icon .icon-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: all 0.8s ease;
+    fill: none;
+}
+
+/* Анимация при наведении */
+.progression__item:hover .progression__icon .icon-path {
+    stroke-dashoffset: 0;
+    stroke: var(--primary-blue);
+}
+
+/* Добавляем анимацию вращения для иконки Achievements */
+.progression__item:nth-child(2) .progression__icon svg {
+    transition: transform 0.8s ease;
+}
+
+.progression__item:nth-child(2):hover .progression__icon svg {
+    transform: rotate(180deg);
+}
+
+/* Добавляем анимацию движения для стрелок */
+.progression__item:nth-child(1) .progression__icon .icon-path,
+.progression__item:nth-child(3) .progression__icon .icon-path {
+    transform-origin: center;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progression__item:nth-child(1):hover .progression__icon .icon-path {
+    transform: translateY(-5px);
+}
+
+.progression__item:nth-child(3):hover .progression__icon .icon-path {
+    transform: translateY(5px);
+}
+
+/* Добавляем свечение для иконок */
+.progression__icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(24, 68, 141, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 16px;
+}
+
+.progression__item:hover .progression__icon::after {
+    opacity: 1;
+}
+
+/* Добавляем стили для выделения важного текста */
+.progression__item-right .highlight {
+    color: var(--primary-blue);
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    background: rgba(24, 68, 141, 0.08);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.progression__item:hover .progression__item-right .highlight {
+    background: rgba(24, 68, 141, 0.12);
+    transform: translateX(3px);
+}
+
+/* Стили для секции наград */
+.rewards {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    background: linear-gradient(180deg, rgba(12, 94, 124, 0.02) 0%, rgba(24, 68, 141, 0.03) 100%);
+}
+
+.rewards__content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rewards__title {
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.rewards__intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--secondary-grey);
+}
+
+.rewards__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.rewards__card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(24, 68, 141, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.rewards__card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(24, 68, 141, 0.1);
+}
+
+.rewards__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-blue), var(--teal-blue));
+    opacity: 0.7;
+    transition: height 0.3s ease;
+}
+
+.rewards__card:hover::before {
+    height: 6px;
+    opacity: 1;
+}
+
+.rewards__card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(24, 68, 141, 0.1);
+}
+
+.rewards__card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(24, 68, 141, 0.05);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.rewards__card:hover .rewards__card-icon {
+    background: rgba(24, 68, 141, 0.1);
+    transform: scale(1.1);
+}
+
+.rewards__card-header h3 {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.rewards__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rewards__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rewards__list li {
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+    color: var(--secondary-grey);
+}
+
+.rewards__list li::before {
+    content: '◈';
+    position: absolute;
+    left: 0;
+    color: var(--teal-blue);
+    font-size: 0.9rem;
+}
+
+.rewards__important {
+    color: var(--primary-blue);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rewards__important::before {
+    content: '!';
+    width: 20px;
+    height: 20px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Обновляем стили для иконок в rewards */
+.rewards__card-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.rewards__card-icon .icon-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: all 0.8s ease;
+    fill: none;
+    stroke: var(--teal-blue);
+    stroke-width: 2;
+}
+
+/* Анимация при наведении */
+.rewards__card:hover .rewards__card-icon .icon-path {
+    stroke-dashoffset: 0;
+    fill: var(--teal-blue);
+    stroke: var(--teal-blue);
+    opacity: 1;
+}
+
+/* Добавляем свечение для иконок */
+.rewards__card-icon {
+    position: relative;
+    overflow: visible;
+}
+
+.rewards__card-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(24, 68, 141, 0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 16px;
+}
+
+.rewards__card:hover .rewards__card-icon::after {
+    opacity: 1;
+}
+
+/* Уникальные анимации для каждой иконки */
+.rewards__card:nth-child(1):hover .rewards__card-icon .icon-path {
+    transform: scaleY(1.1);
+}
+
+.rewards__card:nth-child(2):hover .rewards__card-icon .icon-path {
+    transform: scale(1.1);
+}
+
+/* Стили для секции шагов */
+.steps {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    background: linear-gradient(180deg, rgba(24, 68, 141, 0.03) 0%, rgba(12, 94, 124, 0.02) 100%);
+}
+
+.steps__content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.steps__title {
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.steps__title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--teal-blue);
+    border-radius: 2px;
+}
+
+.steps__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.step {
+    display: flex;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: stepReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.step:nth-child(1) { animation-delay: 0.2s; }
+.step:nth-child(2) { animation-delay: 0.4s; }
+.step:nth-child(3) { animation-delay: 0.6s; }
+
+.step__number {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step__number span {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.step__line {
+    position: absolute;
+    top: 40px;
+    width: 2px;
+    height: calc(100% + 2rem);
+    background: linear-gradient(to bottom, var(--primary-blue), var(--teal-blue));
+    opacity: 0.3;
+}
+
+.step:last-child .step__line {
+    display: none;
+}
+
+.step__content {
+    background: white;
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(24, 68, 141, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+    position: relative;
+    border: 1px solid rgba(24, 68, 141, 0.08);
+}
+
+.step:hover .step__content {
+    transform: translateX(10px);
+    box-shadow: 0 15px 40px rgba(24, 68, 141, 0.1);
+    border-color: rgba(24, 68, 141, 0.2);
+}
+
+.step:hover .step__number span {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(24, 68, 141, 0.2);
+}
+
+.step__icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(24, 68, 141, 0.05);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.step:hover .step__icon {
+    background: rgba(24, 68, 141, 0.1);
+    transform: scale(1.1);
+}
+
+.step__content h3 {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.step__content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--secondary-grey);
+}
+
+/* Анимация для иконок */
+.step__icon .icon-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: all 0.8s ease;
+    fill: none;
+}
+
+.step:hover .step__icon .icon-path {
+    stroke-dashoffset: 0;
+    fill: rgba(24, 68, 141, 0.1);
+}
+
+@keyframes stepReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
