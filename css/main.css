@@ -2,15 +2,48 @@
     font-family: 'Inter';
     src: url('../assets/fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
     font-weight: 100 900;
+    font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Comfortaa';
-    src: url('../assets/fonts/Comfortaa\ Variable\ Font.ttf') format('truetype');
+    src: url('../assets/fonts/Comfortaa Variable Font.ttf') format('truetype');
     font-weight: 300 700;
+    font-style: normal;
     font-display: swap;
 }
+
+/* Phosphor Icons Integration */
+.ph {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+.ph-animated {
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.ph-animated:hover {
+    transform: scale(1.1);
+}
+
+/* Custom icon sizes */
+.ph-sm { font-size: 1rem; }
+.ph-md { font-size: 1.5rem; }
+.ph-lg { font-size: 2rem; }
+.ph-xl { font-size: 3rem; }
+
+/* Icon colors based on theme */
+.ph-primary { color: var(--primary-blue); }
+.ph-secondary { color: var(--secondary-grey); }
+.ph-teal { color: var(--teal-blue); }
+.ph-white { color: white; }
 
 :root {
     --primary-blue: #18448D;
@@ -32,18 +65,169 @@
 }
 
 body {
-    background-color: var(--background);
-    font-family: var(--body-font);
-    line-height: 1.6;
-    color: var(--secondary-grey);
+    font-family: 'Comfortaa', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     overflow-x: hidden;
-    overflow-y: auto; /* Возвращаем стандартный скролл */
 }
 
+/* Навигация */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.nav {
+    padding: 1rem 0;
+}
+
+.nav__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__logo {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.nav__logo img {
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.nav__logo:hover img {
+    transform: scale(1.05);
+}
+
+.nav__menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav__list {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav__item {
+    position: relative;
+}
+
+.nav__link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--teal-blue));
+    transition: width 0.3s ease;
+}
+
+.nav__link:hover {
+    color: var(--primary-blue);
+}
+
+.nav__link:hover::after {
+    width: 100%;
+}
+
+.nav__action {
+    margin-left: 2rem;
+}
+
+.nav__button {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: linear-gradient(90deg, var(--primary-blue), var(--teal-blue));
+    color: white;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(12, 94, 124, 0.2);
+}
+
+.nav__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(12, 94, 124, 0.3);
+}
+
+.nav__toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+}
+
+@media (max-width: 992px) {
+    .nav__menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 70px);
+        background-color: white;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        padding: 2rem;
+        z-index: 1000;
+    }
+    
+    .nav__menu.active {
+        right: 0;
+    }
+    
+    .nav__list {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .nav__toggle {
+        display: block;
+    }
+    
+    .nav__action {
+        margin-left: 0;
+        margin-top: 2rem;
+    }
+    
+    .nav__button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Основной контент */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-sm);
+}
+
+/* Основной контент */
+main {
+    padding-top: 70px; /* Высота навигационного меню */
 }
 
 /* Стили для hero секции */
@@ -57,16 +241,17 @@ body {
 
 .hero__container {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     align-items: center;
     position: relative;
 }
 
 .hero__content {
     opacity: 0;
-    transform: translateX(-30px);
-    animation: slideInLeft 0.8s ease forwards;
+    transform: translateY(30px);
+    animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 0.3s;
 }
 
 .hero__title {
@@ -80,8 +265,10 @@ body {
     font-weight: 500;
     color: var(--primary-blue);
     margin-bottom: var(--spacing-xs);
-    opacity: 0.8;
+    opacity: 0;
     text-transform: uppercase;
+    animation: fadeInText 0.6s ease forwards;
+    animation-delay: 0.6s;
 }
 
 .hero__title-large {
@@ -93,6 +280,10 @@ body {
     letter-spacing: -0.02em;
     text-transform: uppercase;
     margin-bottom: var(--spacing-xs);
+    opacity: 0;
+    animation: fadeInText 0.6s ease forwards;
+    animation-delay: 0.9s;
+    transform: translateY(20px);
 }
 
 .hero__title-medium {
@@ -104,48 +295,96 @@ body {
     letter-spacing: -0.02em;
     text-transform: uppercase;
     white-space: nowrap;
+    opacity: 0;
+    animation: fadeInText 0.6s ease forwards;
+    animation-delay: 1.2s;
+    transform: translateY(20px);
 }
 
 .hero__text {
-    font-size: 1.1rem;
+    font-size: 19px;
     margin-bottom: var(--spacing-md);
     color: var(--secondary-grey);
     max-width: 95%;
-    opacity: 0.9;
+    opacity: 0;
     line-height: 1.8;
+    animation: fadeInText 0.6s ease forwards;
+    animation-delay: 1.5s;
+    transform: translateY(20px);
 }
 
 .hero__logo {
     opacity: 0;
-    transform: translateX(30px);
-    animation: slideInRight 0.8s ease forwards;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding: 0;
     margin: 0;
-    width: 130%;
+    width: 100%;
+    position: relative;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.5s;
 }
 
 .hero__logo img {
-    width: 100%;
+    width: 120%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
-    transform: scale(2.2);
+    filter: drop-shadow(0 10px 20px rgba(24, 68, 141, 0.2));
+    transform: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    animation: none !important; /* Принудительно отключаем все анимации */
+    transform-style: preserve-3d; /* Добавляем 3D-эффект */
 }
 
-@keyframes slideInLeft {
+.logo-animated {
+    /* Добавляем базовое свойство, чтобы класс не был пустым */
+    display: block;
+    backface-visibility: hidden;
+    animation: none !important; /* Принудительно отключаем все анимации */
+    perspective: 1000px; /* Добавляем перспективу для 3D */
+}
+
+/* 3D-эффект при наведении - без свечения */
+.hero__logo:hover img {
+    filter: drop-shadow(0 15px 30px rgba(24, 68, 141, 0.3));
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg); /* 3D-эффект при наведении */
+}
+
+/* Удаляем все лишние эффекты и анимации */
+.hero__logo::before,
+.hero__logo::after {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
     to {
         opacity: 1;
-        transform: translateX(0);
     }
 }
 
-@keyframes slideInRight {
-    to {
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -157,6 +396,272 @@ body {
     padding: var(--spacing-lg) 0;
     background: linear-gradient(180deg, var(--background) 0%, rgba(24, 68, 141, 0.03) 100%);
     margin-top: -10vh;
+}
+
+/* About CryptoXpress Section */
+.about {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    background: linear-gradient(180deg, var(--background) 0%, rgba(24, 68, 141, 0.03) 100%);
+    margin-top: -10vh;
+}
+
+.about__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about__content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about__content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about__title {
+    font-family: var(--heading-font);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.about__title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--teal-blue);
+    border-radius: 2px;
+}
+
+.about__text {
+    font-size: 19px;
+    line-height: 1.8;
+    color: var(--secondary-grey);
+    margin-bottom: var(--spacing-md);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about__highlight {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(24, 68, 141, 0.05);
+    border-radius: 8px;
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin: 0.5rem 0 2.5rem;
+    border-left: 3px solid var(--primary-blue);
+    transition: all 0.3s ease;
+    font-size: 19px;
+}
+
+.about__highlight:hover {
+    transform: translateX(5px);
+    background: rgba(24, 68, 141, 0.08);
+}
+
+.about__image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about__image-container {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.about__image-container.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about__icon {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 40px rgba(24, 68, 141, 0.1);
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0 auto;
+}
+
+.about__icon svg {
+    width: 70px;
+    height: 70px;
+    transition: all 0.5s ease;
+}
+
+.about__icon:hover {
+    transform: translateY(-10px) rotate(5deg);
+    box-shadow: 0 30px 60px rgba(24, 68, 141, 0.15);
+}
+
+.about__icon:hover svg {
+    transform: scale(1.1);
+}
+
+.about__icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--teal-blue));
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+.about__icon:hover::before {
+    opacity: 0.1;
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.about__features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.about__feature {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(24, 68, 141, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(24, 68, 141, 0.05);
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.about__feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(24, 68, 141, 0.1);
+    border-color: rgba(24, 68, 141, 0.1);
+}
+
+.about__feature::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(24, 68, 141, 0.05), transparent);
+    transition: height 0.3s ease;
+    z-index: 0;
+}
+
+.about__feature:hover::after {
+    height: 100%;
+}
+
+.about__feature-title {
+    font-family: var(--heading-font);
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.about__feature:hover .about__feature-title {
+    transform: scale(1.05);
+    color: var(--teal-blue);
+}
+
+.about__feature-title::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--teal-blue);
+    border-radius: 50%;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.about__feature:hover .about__feature-title::before {
+    transform: scale(1.5);
+    background: var(--primary-blue);
+}
+
+.about__feature-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--secondary-grey);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.about__feature:hover .about__feature-text {
+    transform: translateY(5px);
+}
+
+/* Responsive styles for About section */
+@media (max-width: 992px) {
+    .about__container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .about__image {
+        order: -1;
+    }
+
+    .about__features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about__features {
+        grid-template-columns: 1fr;
+    }
+    
+    .about__title {
+        font-size: 2.8rem;
+    }
 }
 
 .roles__container {
@@ -199,7 +704,7 @@ body {
 }
 
 .roles__text {
-    font-size: 1.2rem;
+    font-size: 19px;
     line-height: 1.8;
     color: var(--secondary-grey);
     max-width: 800px;
@@ -258,33 +763,27 @@ body {
 
 /* Обновленные стили для иконок и анимаций */
 .role-card__icon-wrapper {
-    flex-shrink: 0;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--primary-blue), var(--teal-blue));
-    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary-blue), #2C5AC9);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 20px rgba(24, 68, 141, 0.15);
     position: relative;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
+    margin-right: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 10px 20px rgba(24, 68, 141, 0.2);
 }
 
-/* Анимация свечения для иконок */
-.role-card__icon-wrapper::before {
-    content: '';
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+.role-card__icon-wrapper i {
+    font-size: 36px;
+    transition: all 0.3s ease;
 }
 
-.role-card:hover .role-card__icon-wrapper::before {
-    opacity: 1;
+.role-card:hover .role-card__icon-wrapper i {
+    transform: scale(1.2);
 }
 
 /* Стили для SVG иконок */
@@ -310,7 +809,43 @@ body {
     opacity: 0.7;
 }
 
-/* Анимации при наведении */
+/* Анимации при прокрутке для иконок */
+.role-card__icon-wrapper.icon-animated svg {
+    animation: iconPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.role-card__icon-wrapper.icon-animated .icon-path,
+.role-card__icon-wrapper.icon-animated path {
+    stroke-dashoffset: 0;
+    fill: rgba(255, 255, 255, 0.9);
+    animation: iconFill 0.8s ease forwards;
+}
+
+.role-card__icon-wrapper.icon-animated .icon-circle {
+    stroke-dashoffset: 0;
+    animation: iconRotate 1.2s ease forwards;
+}
+
+.role-card__icon-wrapper.icon-animated .icon-inner {
+    stroke-dashoffset: 0;
+    fill: rgba(255, 255, 255, 0.4);
+    animation: iconFadeIn 0.8s ease forwards 0.3s;
+}
+
+/* Анимации для звезд при прокрутке */
+.role-card:nth-child(1) .role-card__icon-wrapper.icon-animated svg path:nth-child(1) {
+    animation: starReveal 0.5s ease forwards 0.1s;
+}
+
+.role-card:nth-child(1) .role-card__icon-wrapper.icon-animated svg path:nth-child(2) {
+    animation: starReveal 0.5s ease forwards 0.2s;
+}
+
+.role-card:nth-child(1) .role-card__icon-wrapper.icon-animated svg path:nth-child(3) {
+    animation: starReveal 0.5s ease forwards 0.3s;
+}
+
+/* Анимации при наведении - оставляем для дополнительного эффекта */
 .role-card:hover .icon-path {
     stroke-dashoffset: 0;
     fill: rgba(255, 255, 255, 0.9);
@@ -326,17 +861,207 @@ body {
     fill: rgba(255, 255, 255, 0.4);
 }
 
-/* Уникальные стили для каждой карточки */
+/* Keyframes для анимаций иконок */
+@keyframes iconPop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes iconFill {
+    0% {
+        fill-opacity: 0;
+        stroke-dashoffset: 100;
+    }
+    100% {
+        fill-opacity: 1;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes iconRotate {
+    0% {
+        transform: rotate(0deg);
+        stroke-dashoffset: 100;
+    }
+    100% {
+        transform: rotate(180deg);
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes iconFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes starReveal {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes iconPathReveal {
+    0% {
+        stroke-dashoffset: 100;
+        fill-opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        fill-opacity: 1;
+    }
+}
+
+/* Стиль для иконки первого уровня (Initiate) */
 .role-card:nth-child(1) .role-card__icon-wrapper {
-    background: linear-gradient(135deg, var(--primary-blue), #2563eb);
+    background: linear-gradient(135deg, var(--secondary-grey), #4B4C55);
+    box-shadow: 0 10px 20px rgba(44, 45, 50, 0.2);
 }
 
+.role-card:nth-child(1) .role-card__title {
+    color: var(--secondary-grey);
+}
+
+.role-card:nth-child(1) .role-card__level {
+    color: var(--secondary-grey);
+    background: rgba(44, 45, 50, 0.1);
+    border: 1px solid rgba(44, 45, 50, 0.3);
+}
+
+.role-card:nth-child(1):hover .role-card__level {
+    background: rgba(44, 45, 50, 0.2);
+}
+
+.role-card:nth-child(1) .role-card__section h4 {
+    color: var(--secondary-grey);
+}
+
+.role-card:nth-child(1) .role-card__section h4::before {
+    background-color: var(--secondary-grey);
+}
+
+.role-card:nth-child(1)::before {
+    background: linear-gradient(90deg, var(--secondary-grey) 0%, transparent 100%);
+}
+
+.role-card:nth-child(1) .role-card__list li::before {
+    color: var(--secondary-grey);
+}
+
+.role-card:nth-child(1) .role-card__description {
+    background: rgba(44, 45, 50, 0.05);
+    border: 1px solid rgba(44, 45, 50, 0.1);
+}
+
+.role-card:nth-child(1):hover .role-card__description {
+    background: rgba(44, 45, 50, 0.1);
+    border: 1px solid rgba(44, 45, 50, 0.2);
+}
+
+/* Стили для второй карточки (Pioneer Level 2) */
 .role-card:nth-child(2) .role-card__icon-wrapper {
-    background: linear-gradient(135deg, var(--teal-blue), #0891b2);
+    background: #0C5E7C;
+    border-radius: 16px;
 }
 
+.role-card:nth-child(2) .role-card__title {
+    color: #0C5E7C;
+}
+
+.role-card:nth-child(2) .role-card__level {
+    color: #0C5E7C;
+    background: rgba(12, 94, 124, 0.08);
+    border: 1px solid rgba(12, 94, 124, 0.1);
+}
+
+.role-card:nth-child(2):hover .role-card__level {
+    background: rgba(12, 94, 124, 0.12);
+}
+
+.role-card:nth-child(2) .role-card__section h4 {
+    color: #0C5E7C;
+}
+
+.role-card:nth-child(2) .role-card__section h4::before {
+    background: #0C5E7C;
+}
+
+.role-card:nth-child(2)::before {
+    background: linear-gradient(to bottom, #0C5E7C, #0A4E68);
+}
+
+.role-card:nth-child(2) .role-card__list li::before {
+    color: #0C5E7C;
+}
+
+.role-card:nth-child(2) .role-card__description {
+    background: linear-gradient(to right, rgba(12, 94, 124, 0.02), rgba(10, 78, 104, 0.02));
+    border-bottom: 2px solid rgba(12, 94, 124, 0.1);
+}
+
+.role-card:nth-child(2):hover .role-card__description {
+    background: linear-gradient(to right, rgba(12, 94, 124, 0.04), rgba(10, 78, 104, 0.04));
+    border-bottom-color: #0C5E7C;
+}
+
+/* Стили для третьей карточки (Architect Level 3) */
 .role-card:nth-child(3) .role-card__icon-wrapper {
-    background: linear-gradient(135deg, #1e40af, var(--primary-blue));
+    background: #18448D;
+    border-radius: 16px;
+}
+
+.role-card:nth-child(3) .role-card__title {
+    color: #18448D;
+}
+
+.role-card:nth-child(3) .role-card__level {
+    color: #18448D;
+    background: rgba(24, 68, 141, 0.08);
+    border: 1px solid rgba(24, 68, 141, 0.1);
+}
+
+.role-card:nth-child(3):hover .role-card__level {
+    background: rgba(24, 68, 141, 0.12);
+}
+
+.role-card:nth-child(3) .role-card__section h4 {
+    color: #18448D;
+}
+
+.role-card:nth-child(3) .role-card__section h4::before {
+    background: #18448D;
+}
+
+.role-card:nth-child(3)::before {
+    background: linear-gradient(to bottom, #18448D, #143A7A);
+}
+
+.role-card:nth-child(3) .role-card__list li::before {
+    color: #18448D;
+}
+
+.role-card:nth-child(3) .role-card__description {
+    background: linear-gradient(to right, rgba(24, 68, 141, 0.02), rgba(20, 58, 122, 0.02));
+    border-bottom: 2px solid rgba(24, 68, 141, 0.1);
+}
+
+.role-card:nth-child(3):hover .role-card__description {
+    background: linear-gradient(to right, rgba(24, 68, 141, 0.04), rgba(20, 58, 122, 0.04));
+    border-bottom-color: #18448D;
 }
 
 /* Улучшенный заголовок */
@@ -385,6 +1110,7 @@ body {
     margin-bottom: 0;
     transition: all 0.3s ease;
     border: 1px solid rgba(24, 68, 141, 0.05);
+    text-align: left;
 }
 
 .role-card__section:hover {
@@ -400,6 +1126,7 @@ body {
     align-items: center;
     gap: 0.8rem;
     font-weight: 600;
+    text-align: left;
 }
 
 .role-card__section h4::before {
@@ -425,7 +1152,7 @@ body {
     margin-bottom: 1rem;
     padding-left: 1.8rem;
     position: relative;
-    font-size: 0.95rem;
+    font-size: 17px;
     line-height: 1.6;
     color: var(--secondary-grey);
     transition: all 0.3s ease;
@@ -536,7 +1263,7 @@ html, body {
 }
 
 .role-card__description {
-    font-size: 1rem;
+    font-size: 19px;
     color: var(--secondary-grey);
     margin: 1rem 0 2rem;
     line-height: 1.6;
@@ -546,6 +1273,7 @@ html, body {
     position: relative;
     transition: all 0.3s ease;
     border-bottom: 2px solid rgba(12, 94, 124, 0.1);
+    text-align: left;
 }
 
 /* Убираем предыдущий декоративный элемент и добавляем подчеркивание */
@@ -581,13 +1309,22 @@ html, body {
 .progression__title::after {
     content: '';
     position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 0;
+    left: 0;
     width: 60px;
     height: 3px;
-    background: var(--teal-blue);
-    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-teal) 100%);
+    border-radius: 3px;
+}
+
+.progression__intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    opacity: 0.9;
 }
 
 .progression__items {
@@ -598,19 +1335,23 @@ html, body {
 
 .progression__item {
     display: flex;
-    gap: 4rem;
-    padding: 2rem;
-    background: white;
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(24, 68, 141, 0.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
     position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    animation: itemReveal 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
     overflow: hidden;
 }
 
 .progression__item:hover {
-    transform: translateX(10px);
-    box-shadow: 0 15px 40px rgba(24, 68, 141, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .progression__item::before {
@@ -620,9 +1361,10 @@ html, body {
     top: 0;
     height: 100%;
     width: 4px;
-    background: linear-gradient(to bottom, var(--primary-blue), var(--teal-blue));
+    background: var(--primary-blue);
+    border-radius: 2px 0 0 2px;
     opacity: 0.7;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .progression__item:hover::before {
@@ -631,152 +1373,305 @@ html, body {
 }
 
 .progression__item-left {
-    flex: 0 0 300px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: flex-start;
+    width: 200px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
 }
 
 .progression__item-left h3 {
-    font-family: var(--heading-font);
-    font-size: 1.5rem;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
     color: var(--primary-blue);
-    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .progression__icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(24, 68, 141, 0.05);
-    border-radius: 16px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-.progression__item:hover .progression__icon {
-    background: rgba(24, 68, 141, 0.1);
-    transform: scale(1.1);
-}
-
-.progression__item-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    background: rgba(24, 68, 141, 0.02);
-    border-radius: 16px;
-    transition: all 0.3s ease;
-}
-
-.progression__item:hover .progression__item-right {
-    background: rgba(24, 68, 141, 0.04);
-}
-
-.progression__item-right p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--secondary-grey);
-}
-
-.progression__item-right strong {
-    color: var(--primary-blue);
-    font-weight: 600;
-}
-
-/* Анимация появления элементов */
-.progression__item {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: itemReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.progression__item:nth-child(1) { animation-delay: 0.2s; }
-.progression__item:nth-child(2) { animation-delay: 0.4s; }
-.progression__item:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes itemReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Обновляем стили для иконок прогресса */
-.progression__icon svg {
-    width: 40px;
-    height: 40px;
-}
-
-.progression__icon .icon-path {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    transition: all 0.8s ease;
-    fill: none;
-}
-
-/* Анимация при наведении */
-.progression__item:hover .progression__icon .icon-path {
-    stroke-dashoffset: 0;
-    stroke: var(--primary-blue);
-}
-
-/* Добавляем анимацию вращения для иконки Achievements */
-.progression__item:nth-child(2) .progression__icon svg {
-    transition: transform 0.8s ease;
-}
-
-.progression__item:nth-child(2):hover .progression__icon svg {
-    transform: rotate(180deg);
-}
-
-/* Добавляем анимацию движения для стрелок */
-.progression__item:nth-child(1) .progression__icon .icon-path,
-.progression__item:nth-child(3) .progression__icon .icon-path {
-    transform-origin: center;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.progression__item:nth-child(1):hover .progression__icon .icon-path {
-    transform: translateY(-5px);
-}
-
-.progression__item:nth-child(3):hover .progression__icon .icon-path {
-    transform: translateY(5px);
-}
-
-/* Добавляем свечение для иконок */
-.progression__icon::after {
+.progression__icon::before {
     content: '';
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(24, 68, 141, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
     opacity: 0;
-    transition: opacity 0.5s ease;
-    border-radius: 16px;
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.progression__item:hover .progression__icon::after {
+.progression__icon:hover::before {
     opacity: 1;
 }
 
-/* Добавляем стили для выделения важного текста */
-.progression__item-right .highlight {
-    color: var(--primary-blue);
-    font-weight: 600;
-    padding: 0.2rem 0.5rem;
-    background: rgba(24, 68, 141, 0.08);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    display: inline-block;
+.progression__icon i {
+    font-size: 40px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.progression__item:hover .progression__item-right .highlight {
-    background: rgba(24, 68, 141, 0.12);
-    transform: translateX(3px);
+.progression__item:hover .progression__icon {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.progression__item:hover .progression__icon i {
+    transform: scale(1.1);
+    animation: none; /* Удаляю анимацию пульсации */
+}
+
+.progression__item-right {
+    flex-grow: 1;
+    padding-left: 30px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.progression__item:hover .progression__item-right {
+    padding-left: 35px;
+}
+
+.progression__item-right p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.progression__item-right strong {
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.progression__item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.progression__item:hover::after {
+    opacity: 1;
+}
+
+.progression__item:nth-child(2) .progression__icon i {
+    color: var(--teal-blue);
+}
+
+.progression__item:nth-child(1) .progression__icon i,
+.progression__item:nth-child(3) .progression__icon i {
+    color: var(--primary-blue);
+}
+
+@media (max-width: 768px) {
+    .progression__item {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .progression__item-left {
+        width: 100%;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    
+    .progression__item-left h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .progression__icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 15px;
+    }
+    
+    .progression__icon i {
+        font-size: 32px;
+    }
+    
+    .progression__item-right {
+        padding-left: 0;
+        text-align: center;
+    }
+    
+    .progression__item:hover .progression__item-right {
+        padding-left: 0;
+    }
+    
+    .progression__item:nth-child(2):hover .progression__item-right {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .progression__icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .progression__icon i {
+        font-size: 28px;
+    }
+    
+    .progression__item-left h3 {
+        font-size: 18px;
+    }
+    
+    .progression__item-right .highlight {
+        font-size: 0.9em;
+    }
+    
+    .progression__item:hover .progression__item-right {
+        padding-left: 15px;
+    }
+}
+
+/* Стили для выделенных элементов в секции Progression System */
+.highlight {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.2) 100%);
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: var(--primary-blue);
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-left: 3px solid var(--primary-blue);
+    display: inline-block;
+    margin: 2px 0;
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.highlight:hover {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.3) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.highlight:hover::after {
+    width: 100%;
+}
+
+/* Особые стили для выделенных элементов во втором пункте (Achievements & Specialization) */
+.progression__item:nth-child(2) .highlight {
+    background: linear-gradient(135deg, rgba(12, 94, 124, 0.1) 0%, rgba(12, 94, 124, 0.2) 100%);
+    color: #0C5E7C;
+    border-left: 3px solid #0C5E7C;
+}
+
+.progression__item:nth-child(2) .highlight::after {
+    background: #0C5E7C;
+}
+
+.progression__item:nth-child(2) .highlight:hover {
+    background: linear-gradient(135deg, rgba(12, 94, 124, 0.2) 0%, rgba(12, 94, 124, 0.3) 100%);
+    box-shadow: 0 4px 8px rgba(12, 94, 124, 0.2);
+}
+
+/* Адаптивные стили для выделенных элементов */
+@media (max-width: 768px) {
+    .highlight {
+        padding: 3px 8px;
+        font-size: 0.95em;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .progression__item-right .highlight {
+        margin: 4px 2px;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px) {
+    .highlight {
+        padding: 2px 6px;
+        font-size: 0.9em;
+    }
+    
+    .progression__item-right .highlight {
+        margin: 3px 1px;
+    }
+}
+
+/* Удаляю стили выделения для секции Rewards System */
+.rewards__card .highlight,
+.rewards__list .highlight,
+.rewards__card-content .highlight,
+.rewards__intro .highlight,
+.rewards .highlight,
+.rewards__content .highlight {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    border-left: none !important;
+    display: inline !important;
+    margin: 0 !important;
+    position: static !important;
+    box-shadow: none !important;
+    transition: none !important;
+    text-decoration: none !important;
+    transform: none !important;
+}
+
+.rewards__card .highlight::after,
+.rewards__list .highlight::after,
+.rewards__card-content .highlight::after,
+.rewards__intro .highlight::after,
+.rewards .highlight::after,
+.rewards__content .highlight::after {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.rewards__card .highlight:hover,
+.rewards__list .highlight:hover,
+.rewards__card-content .highlight:hover,
+.rewards__intro .highlight:hover,
+.rewards .highlight:hover,
+.rewards__content .highlight:hover {
+    background: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    color: inherit !important;
 }
 
 /* Стили для секции наград */
@@ -806,7 +1701,7 @@ html, body {
     text-align: center;
     max-width: 800px;
     margin: 0 auto 4rem;
-    font-size: 1.1rem;
+    font-size: 19px;
     line-height: 1.8;
     color: var(--secondary-grey);
 }
@@ -861,17 +1756,23 @@ html, body {
 .rewards__card-icon {
     width: 60px;
     height: 60px;
-    background: rgba(24, 68, 141, 0.05);
-    border-radius: 16px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+}
+
+.rewards__card-icon i {
+    font-size: 28px;
     transition: all 0.3s ease;
 }
 
-.rewards__card:hover .rewards__card-icon {
-    background: rgba(24, 68, 141, 0.1);
-    transform: scale(1.1);
+.rewards__card:hover .rewards__card-icon i {
+    transform: scale(1.2);
 }
 
 .rewards__card-header h3 {
@@ -900,6 +1801,7 @@ html, body {
     padding-left: 1.5rem;
     line-height: 1.6;
     color: var(--secondary-grey);
+    font-size: 17px;
 }
 
 .rewards__list li::before {
@@ -963,25 +1865,105 @@ html, body {
 .rewards__card-icon::after {
     content: '';
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(24, 68, 141, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(24, 68, 141, 0.3);
     opacity: 0;
-    transition: opacity 0.5s ease;
-    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .rewards__card:hover .rewards__card-icon::after {
     opacity: 1;
+    box-shadow: 0 0 0 8px rgba(24, 68, 141, 0.1);
 }
 
-/* Уникальные анимации для каждой иконки */
 .rewards__card:nth-child(1):hover .rewards__card-icon .icon-path {
     transform: scaleY(1.1);
 }
 
 .rewards__card:nth-child(2):hover .rewards__card-icon .icon-path {
     transform: scale(1.1);
+}
+
+/* Улучшенные стили для денежной иконки в секции Level 3 Architect */
+.rewards__card:nth-child(2) .rewards__card-icon {
+    background: rgba(12, 94, 124, 0.1);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(12, 94, 124, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.rewards__card:nth-child(2) .rewards__card-icon i {
+    font-size: 28px;
+    color: var(--primary-blue);
+    transition: all 0.3s ease;
+}
+
+.rewards__card:nth-child(2):hover .rewards__card-icon {
+    background: rgba(12, 94, 124, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(12, 94, 124, 0.2);
+}
+
+.rewards__card:nth-child(2):hover .rewards__card-icon i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(12, 94, 124, 0.5));
+}
+
+/* Стили для SVG-иконки в секции Level 3 Architect */
+.rewards__card:nth-child(2) .rewards__card-icon svg {
+    width: 48px;
+    height: 48px;
+    color: var(--primary-blue);
+    stroke: var(--primary-blue);
+    stroke-width: 2;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rewards__card:nth-child(2):hover .rewards__card-icon svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(12, 94, 124, 0.5));
+}
+
+.rewards__card:nth-child(2) .rewards__card-icon {
+    background: rgba(12, 94, 124, 0.1);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(12, 94, 124, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.rewards__card:nth-child(2):hover .rewards__card-icon {
+    background: rgba(12, 94, 124, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(12, 94, 124, 0.2);
+}
+
+.rewards__card:nth-child(2) .rewards__card-icon i {
+    font-size: 28px;
+    color: var(--primary-blue);
+    transition: all 0.3s ease;
+}
+
+.rewards__card:nth-child(2):hover .rewards__card-icon i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(12, 94, 124, 0.5));
 }
 
 /* Стили для секции шагов */
@@ -1017,6 +1999,16 @@ html, body {
     height: 3px;
     background: var(--teal-blue);
     border-radius: 2px;
+}
+
+.steps__intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 19px;
+    line-height: 1.8;
+    color: var(--secondary-grey);
+    opacity: 0.9;
 }
 
 .steps__timeline {
@@ -1097,18 +2089,23 @@ html, body {
 .step__icon {
     width: 50px;
     height: 50px;
-    background: rgba(24, 68, 141, 0.05);
-    border-radius: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.step__icon i {
+    font-size: 24px;
     transition: all 0.3s ease;
 }
 
-.step:hover .step__icon {
-    background: rgba(24, 68, 141, 0.1);
-    transform: scale(1.1);
+.step:hover .step__icon i {
+    transform: scale(1.2);
 }
 
 .step__content h3 {
@@ -1120,9 +2117,43 @@ html, body {
 }
 
 .step__content p {
-    font-size: 1rem;
+    font-size: 19px;
     line-height: 1.6;
     color: var(--secondary-grey);
+}
+
+.step__notice {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    background: linear-gradient(135deg, rgba(24, 68, 141, 0.05) 0%, rgba(12, 94, 124, 0.08) 100%);
+    border-left: 3px solid var(--teal-blue);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--teal-blue);
+    line-height: 1.5;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.step__notice::before {
+    content: '⏱';
+    font-size: 1.1rem;
+}
+
+.step__notice:hover {
+    background: linear-gradient(135deg, rgba(24, 68, 141, 0.08) 0%, rgba(12, 94, 124, 0.12) 100%);
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(12, 94, 124, 0.1);
+}
+
+@media (max-width: 768px) {
+    .step__notice {
+        font-size: 0.9rem;
+        padding: 0.8rem 1rem;
+    }
 }
 
 /* Анимация для иконок */
@@ -1143,4 +2174,568 @@ html, body {
         opacity: 1;
         transform: translateY(0);
     }
-} 
+}
+
+/* Специальные стили для иконки в секции Achievements & Specialization */
+.progression__item:nth-child(2) .progression__icon svg path {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    transition: all 0.8s ease;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.progression__item:nth-child(2) .progression__icon.icon-animated svg path {
+    animation: trophyReveal 1.2s ease forwards;
+}
+
+@keyframes trophyReveal {
+    0% {
+        stroke-dashoffset: 120;
+        opacity: 0;
+    }
+    60% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* Обновляем стили при наведении для новой иконки */
+.progression__item:nth-child(2):hover .progression__icon svg path {
+    stroke-dashoffset: 0;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .progression__item {
+        padding: 20px;
+    }
+    
+    .progression__item-center {
+        margin-bottom: 15px;
+    }
+    
+    .progression__item-center h3 {
+        font-size: 20px;
+    }
+    
+    .progression__icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .progression__icon i {
+        font-size: 32px;
+    }
+    
+    .progression__item-right {
+        padding-left: 10px;
+    }
+    
+    .progression__item:hover .progression__item-right {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .progression__icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .progression__icon i {
+        font-size: 28px;
+    }
+    
+    .progression__item-center h3 {
+        font-size: 18px;
+    }
+}
+
+/* Стили для выделенных элементов в секции Progression System */
+.highlight {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.2) 100%);
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: var(--primary-blue);
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-left: 3px solid var(--primary-blue);
+    display: inline-block;
+    margin: 2px 0;
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.highlight:hover {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.3) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.highlight:hover::after {
+    width: 100%;
+}
+
+/* Особые стили для выделенных элементов во втором пункте (Achievements & Specialization) */
+.progression__item:nth-child(2) .highlight {
+    background: linear-gradient(135deg, rgba(12, 94, 124, 0.1) 0%, rgba(12, 94, 124, 0.2) 100%);
+    color: #0C5E7C;
+    border-left: 3px solid #0C5E7C;
+}
+
+.progression__item:nth-child(2) .highlight::after {
+    background: #0C5E7C;
+}
+
+.progression__item:nth-child(2) .highlight:hover {
+    background: linear-gradient(135deg, rgba(12, 94, 124, 0.2) 0%, rgba(12, 94, 124, 0.3) 100%);
+    box-shadow: 0 4px 8px rgba(12, 94, 124, 0.2);
+}
+
+/* Адаптивные стили для выделенных элементов */
+@media (max-width: 768px) {
+    .highlight {
+        padding: 3px 8px;
+        font-size: 0.95em;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .progression__item-right .highlight {
+        margin: 4px 2px;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px) {
+    .highlight {
+        padding: 2px 6px;
+        font-size: 0.9em;
+    }
+    
+    .progression__item-right .highlight {
+        margin: 3px 1px;
+    }
+}
+
+/* Удаляю стили выделения для секции Rewards System */
+.rewards__card .highlight,
+.rewards__list .highlight,
+.rewards__card-content .highlight,
+.rewards__intro .highlight,
+.rewards .highlight,
+.rewards__content .highlight {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    border-left: none !important;
+    display: inline !important;
+    margin: 0 !important;
+    position: static !important;
+    box-shadow: none !important;
+    transition: none !important;
+    text-decoration: none !important;
+    transform: none !important;
+}
+
+.rewards__card .highlight::after,
+.rewards__list .highlight::after,
+.rewards__card-content .highlight::after,
+.rewards__intro .highlight::after,
+.rewards .highlight::after,
+.rewards__content .highlight::after {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.rewards__card .highlight:hover,
+.rewards__list .highlight:hover,
+.rewards__card-content .highlight:hover,
+.rewards__intro .highlight:hover,
+.rewards .highlight:hover,
+.rewards__content .highlight:hover {
+    background: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    color: inherit !important;
+}
+
+.step__content .highlight {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(12, 94, 124, 0.1) 0%, rgba(12, 94, 124, 0.15) 100%);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--primary-blue);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 2px solid var(--primary-blue);
+}
+
+.step__content .highlight:hover {
+    background: linear-gradient(135deg, rgba(12, 94, 124, 0.15) 0%, rgba(12, 94, 124, 0.2) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(12, 94, 124, 0.2);
+}
+
+.step__content .highlight::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--primary-blue);
+    transition: width 0.3s ease;
+}
+
+.step__content .highlight:hover::after {
+    width: 100%;
+}
+
+/* CTA Section */
+.cta {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, rgba(24, 68, 141, 0.05) 0%, rgba(12, 94, 124, 0.08) 100%);
+}
+
+.cta__container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cta__box {
+    position: relative;
+    padding: 4rem;
+    text-align: center;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(12, 94, 124, 0.1);
+    overflow: hidden;
+}
+
+.cta__box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #0C5E7C, #18448D, #0C5E7C) border-box;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderAnimation 4s linear infinite;
+}
+
+@keyframes borderAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.cta__title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta__text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--secondary-grey);
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta__button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: linear-gradient(135deg, #0C5E7C 0%, #18448D 100%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(12, 94, 124, 0.3);
+}
+
+.cta__button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.cta__button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(12, 94, 124, 0.4);
+}
+
+.cta__button:hover::before {
+    left: 100%;
+}
+
+@media (max-width: 768px) {
+    .cta {
+        padding: 4rem 0;
+    }
+    
+    .cta__box {
+        padding: 3rem 2rem;
+    }
+    
+    .cta__title {
+        font-size: 2rem;
+    }
+    
+    .cta__text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta__box {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .cta__title {
+        font-size: 1.8rem;
+    }
+    
+    .cta__text {
+        font-size: 1rem;
+    }
+    
+    .cta__button {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(180deg, rgba(12, 94, 124, 0.05) 0%, rgba(12, 94, 124, 0.1) 100%);
+    padding: 60px 0 30px;
+    border-top: 1px solid rgba(12, 94, 124, 0.2);
+}
+
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo {
+    margin-bottom: 40px;
+}
+
+.footer__logo-img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(12, 94, 124, 0.2));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.footer__logo-img:hover {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 8px 16px rgba(12, 94, 124, 0.3));
+}
+
+.footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.footer__column {
+    min-width: 200px;
+}
+
+.footer__title {
+    color: var(--color-primary);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer__title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-teal) 100%);
+    border-radius: 2px;
+}
+
+.footer__list {
+    list-style: none;
+}
+
+.footer__list li {
+    margin-bottom: 12px;
+}
+
+.footer__link {
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer__link i {
+    color: var(--color-primary);
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.footer__link:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+.footer__link:hover i {
+    transform: scale(1.2);
+}
+
+.footer__social {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(12, 94, 124, 0.1);
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+.footer__social-link:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(12, 94, 124, 0.3);
+}
+
+.footer__bottom {
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(12, 94, 124, 0.1);
+}
+
+.footer__copyright {
+    color: var(--color-text-light);
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer__links {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    
+    .footer__column {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .footer__title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer__link {
+        justify-content: center;
+    }
+}
+
+.highlight {
+    position: relative;
+    color: var(--primary-blue);
+    font-weight: 600;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+/* Подключение шрифта Comfortaa */
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../assets/fonts/Comfortaa Variable Font.ttf') format('truetype');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Общие стили */
+a {
+    text-decoration: none;
+}

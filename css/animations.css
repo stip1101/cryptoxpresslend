@@ -30,19 +30,4 @@
     animation-delay: 0.3s;
 }
 
-/* Анимация для появления при скролле */
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.hero__logo img {
-    animation: float 6s ease-in-out infinite;
-} 
+/* Удаляем анимацию float для логотипа */ 
