@@ -47,9 +47,18 @@
 
 :root {
     --primary-blue: #18448D;
-    --secondary-grey: #2C2D32;
-    --teal-blue: #0C5E7C;
-    --background: #FFFFFF;
+    --primary-blue-rgb: 24, 68, 141;
+    --secondary-blue: #0C5E7C;
+    --secondary-blue-rgb: 12, 94, 124;
+    --teal-blue: #00B5C3;
+    --teal-blue-rgb: 0, 181, 195;
+    --text-color: #333;
+    --text-color-rgb: 51, 51, 51;
+    --secondary-grey: #5a5a5a;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(24, 68, 141, 0.1);
+    --accent-color: #4569D4;
     
     /* Дополнительные переменные для отступов и типографики */
     --spacing-xs: 0.5rem;
@@ -62,6 +71,23 @@
     /* Добавляем переменные для шрифтов */
     --heading-font: 'Inter', sans-serif;
     --body-font: 'Comfortaa', sans-serif;
+}
+
+/* Темная тема */
+:root.dark-theme {
+    --primary-blue: #ffffff;
+    --primary-blue-rgb: 255, 255, 255;
+    --secondary-blue: #ffffff;
+    --secondary-blue-rgb: 255, 255, 255;
+    --teal-blue: #00D7E7;
+    --teal-blue-rgb: 0, 215, 231;
+    --text-color: #ffffff;
+    --text-color-rgb: 255, 255, 255;
+    --secondary-grey: #ffffff;
+    --bg-color: #18448D;
+    --card-bg: #1E56A0;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --accent-color: #4A99FF;
 }
 
 body {
@@ -91,7 +117,8 @@ body {
 .nav__container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 1rem 0;
 }
 
 .nav__logo {
@@ -102,7 +129,7 @@ body {
 
 .nav__logo img {
     height: 100%;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .nav__logo:hover img {
@@ -152,24 +179,30 @@ body {
 }
 
 .nav__action {
-    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
 }
 
 .nav__button {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background: linear-gradient(90deg, var(--primary-blue), var(--teal-blue));
-    color: white;
-    border-radius: 30px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
     font-weight: 600;
     font-size: 0.9rem;
+    color: white;
+    background-color: var(--primary-blue);
+    border: none;
+    cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(12, 94, 124, 0.2);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav__button:hover {
+    background-color: var(--teal-blue);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(12, 94, 124, 0.3);
 }
 
 .nav__toggle {
@@ -556,16 +589,17 @@ main {
 }
 
 .about__feature {
-    background: white;
     padding: 1.5rem;
     border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(24, 68, 141, 0.05);
+    background-color: white;
+    box-shadow: 0 8px 20px rgba(24, 68, 141, 0.05);
     transition: all 0.3s ease;
-    border: 1px solid rgba(24, 68, 141, 0.05);
-    text-align: center;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(24, 68, 141, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .about__feature:hover {
@@ -591,17 +625,16 @@ main {
 }
 
 .about__feature-title {
-    font-family: var(--heading-font);
     font-size: 1.2rem;
-    color: var(--primary-blue);
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
     position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease, color 0.3s ease;
+    display: block;
+    padding-left: 0;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    color: var(--primary-blue);
+    text-align: center;
 }
 
 .about__feature:hover .about__feature-title {
@@ -610,27 +643,28 @@ main {
 }
 
 .about__feature-title::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: var(--teal-blue);
-    border-radius: 50%;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.about__feature:hover .about__feature-title::before {
-    transform: scale(1.5);
-    background: var(--primary-blue);
+    content: '•';
+    display: block;
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: var(--teal-blue);
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .about__feature-text {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: var(--secondary-grey);
+    opacity: 0.9;
+    max-width: 90%;
+    transition: all 0.3s ease;
+    color: var(--primary-blue);
     text-align: center;
-    position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease;
 }
 
 .about__feature:hover .about__feature-text {
@@ -1808,7 +1842,7 @@ html, body {
     content: '◈';
     position: absolute;
     left: 0;
-    color: var(--teal-blue);
+    color: var(--primary-blue);
     font-size: 0.9rem;
 }
 
@@ -1821,16 +1855,7 @@ html, body {
 }
 
 .rewards__important::before {
-    content: '!';
-    width: 20px;
-    height: 20px;
-    background: var(--primary-blue);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
+    display: none;
 }
 
 /* Обновляем стили для иконок в rewards */
@@ -2040,7 +2065,7 @@ html, body {
 .step__number span {
     width: 40px;
     height: 40px;
-    background: var(--primary-blue);
+    background: #02b5c4;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -2738,4 +2763,693 @@ html, body {
 /* Общие стили */
 a {
     text-decoration: none;
+}
+
+.logo-light {
+    display: block;
+}
+
+.logo-dark {
+    display: none;
+}
+
+:root.dark-theme .logo-light {
+    display: none;
+}
+
+:root.dark-theme .logo-dark {
+    display: block;
+}
+
+/* Переключатель темы */
+.theme-toggle {
+    margin-left: 1rem;
+    position: relative;
+    z-index: 100;
+}
+
+.theme-toggle__button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+}
+
+.theme-toggle__button:hover {
+    background-color: rgba(var(--primary-blue-rgb, 24, 68, 141), 0.1);
+}
+
+.theme-toggle__icon {
+    font-size: 1.5rem;
+    position: absolute;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
+}
+
+.theme-toggle__icon--light {
+    color: var(--primary-blue);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.theme-toggle__icon--dark {
+    color: white;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+:root.dark-theme .theme-toggle__icon--light {
+    transform: translateY(-40px);
+    opacity: 0;
+}
+
+:root.dark-theme .theme-toggle__icon--dark {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 992px) {
+    .theme-toggle {
+        margin: 0;
+        position: absolute;
+        right: 80px;
+        top: 15px;
+    }
+}
+
+/* Анимация переключения темы */
+body, section, .header, .nav, .footer, .role-card, .progression__item, .rewards__card, .step, .cta__box, .hero {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Специфичные стили для темной темы */
+:root.dark-theme .header {
+    background-color: rgba(30, 86, 160, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+:root.dark-theme .nav__link {
+    color: #f0f0f0;
+}
+
+:root.dark-theme .nav__link:hover {
+    color: #ffffff;
+}
+
+:root.dark-theme .nav__button,
+:root.dark-theme .nav__button:link,
+:root.dark-theme .nav__button:visited,
+:root.dark-theme .nav__button:active,
+:root.dark-theme .nav__button:focus {
+    background-color: white !important;
+    color: #18448d(--primary-blue) !important;
+    border: 2px solid var(--primary-blue) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+}
+
+:root.dark-theme .nav__button:hover {
+    background-color: white !important;
+    color: var(--teal-blue) !important;
+    border-color: var(--teal-blue) !important;
+}
+
+/* Дополнительное правило для мобильной версии */
+@media (max-width: 992px) {
+    :root.dark-theme .nav__button,
+    :root.dark-theme .nav__button:link,
+    :root.dark-theme .nav__button:visited,
+    :root.dark-theme .nav__button:active {
+        background-color: white !important;
+        color: var(--primary-blue) !important;
+        border: 2px solid var(--primary-blue) !important;
+    }
+}
+
+:root.dark-theme .role-card,
+:root.dark-theme .progression__item,
+:root.dark-theme .rewards__card,
+:root.dark-theme .step__content,
+:root.dark-theme .cta__box {
+    background-color: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+:root.dark-theme .role-card__title,
+:root.dark-theme .progression__item-left h3,
+:root.dark-theme .rewards__card-header h3,
+:root.dark-theme .step__content h3 {
+    color: #ffffff;
+}
+
+:root.dark-theme .role-card__description,
+:root.dark-theme .progression__item-right p,
+:root.dark-theme .rewards__list li,
+:root.dark-theme .step__content p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+:root.dark-theme .highlight {
+    color: #00D7E7;
+}
+
+:root.dark-theme .footer {
+    background: linear-gradient(180deg, #1E3F88 0%, #19387B 100%);
+}
+
+:root.dark-theme .footer__title {
+    color: #ffffff;
+}
+
+:root.dark-theme .footer__link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+:root.dark-theme .footer__link:hover {
+    color: #ffffff;
+}
+
+.logo-light {
+    display: block;
+}
+
+.logo-dark {
+    display: none;
+}
+
+:root.dark-theme .logo-light {
+    display: none !important;
+}
+
+:root.dark-theme .logo-dark {
+    display: block !important;
+}
+
+/* Стили для логотипа в футере */
+.footer__logo-img {
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+/* Стили для логотипа в hero секции */
+:root.dark-theme .hero__logo .logo-light {
+    display: none !important;
+}
+
+:root.dark-theme .hero__logo .logo-dark {
+    display: block !important;
+}
+
+:root.dark-theme .role-card,
+:root.dark-theme .progression__item,
+:root.dark-theme .rewards__card,
+:root.dark-theme .step__content,
+:root.dark-theme .cta__box {
+    background-color: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+:root.dark-theme .role-card:hover {
+    background: linear-gradient(to right, var(--card-bg), rgba(0, 215, 231, 0.1));
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+:root.dark-theme .role-card::before {
+    background: linear-gradient(to bottom, #ffffff, var(--teal-blue));
+}
+
+:root.dark-theme .progression__item::before {
+    background: linear-gradient(135deg, #ffffff, var(--teal-blue));
+}
+
+:root.dark-theme .rewards__card::before {
+    background: linear-gradient(135deg, #ffffff, var(--teal-blue));
+}
+
+:root.dark-theme .about__feature {
+    background-color: var(--card-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root.dark-theme .about__feature:hover {
+    background-color: rgba(0, 215, 231, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+:root.dark-theme .step__notice {
+    background-color: rgba(0, 215, 231, 0.1);
+    border-color: rgba(0, 215, 231, 0.3);
+}
+
+:root.dark-theme .role-card__title,
+:root.dark-theme .progression__item-left h3,
+:root.dark-theme .rewards__card-header h3,
+:root.dark-theme .step__content h3 {
+    color: #ffffff;
+}
+
+:root.dark-theme .role-card__description,
+:root.dark-theme .progression__item-right p,
+:root.dark-theme .rewards__list li,
+:root.dark-theme .step__content p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Улучшение видимости для карточек ролей в темной теме */
+:root.dark-theme .role-card__level {
+    color: #ffffff;
+    background-color: rgba(0, 215, 231, 0.2);
+}
+
+:root.dark-theme .role-card__section h4 {
+    color: #ffffff;
+}
+
+:root.dark-theme .role-card__list li {
+    color: #ffffff;
+}
+
+:root.dark-theme .role-card__list li::before {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+:root.dark-theme .role-card:hover .role-card__level {
+    background-color: rgba(0, 215, 231, 0.4);
+}
+
+/* Стили для иконок в темной теме */
+:root.dark-theme .role-card__icon-wrapper {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+:root.dark-theme .role-card__icon-wrapper i,
+:root.dark-theme .role-card__icon-wrapper svg path {
+    color: #ffffff;
+    fill: #ffffff;
+}
+
+:root.dark-theme .role-card:hover .role-card__icon-wrapper {
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+:root.dark-theme .icon-path,
+:root.dark-theme .icon-circle,
+:root.dark-theme .icon-inner {
+    fill: #ffffff;
+    stroke: #ffffff;
+}
+
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper,
+:root.dark-theme .role-card:nth-child(2) .role-card__icon-wrapper,
+:root.dark-theme .role-card:nth-child(3) .role-card__icon-wrapper {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+:root.dark-theme .role-card:nth-child(1):hover .role-card__icon-wrapper,
+:root.dark-theme .role-card:nth-child(2):hover .role-card__icon-wrapper,
+:root.dark-theme .role-card:nth-child(3):hover .role-card__icon-wrapper {
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Специфичное исправление для иконки Initiate (Level 1) в темной теме */
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper {
+    background-color: transparent !important; /* Принудительно делаем фон прозрачным */
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+:root.dark-theme .role-card:nth-child(1):hover .role-card__icon-wrapper {
+    background-color: transparent !important;
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Принудительное исправление фона иконки Initiate в темной теме */
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 2px solid rgba(255, 255, 255, 0.7) !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
+}
+
+:root.dark-theme .role-card:nth-child(1):hover .role-card__icon-wrapper {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Перезаписываем все возможные градиенты и фоны для иконки */
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper::before,
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    opacity: 0 !important;
+}
+
+/* Звезда должна быть белой */
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper svg,
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper i,
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper svg path,
+:root.dark-theme .role-card:nth-child(1) .role-card__icon-wrapper svg * {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+/* Исправление маркеров списков для темной темы - убираем белые прямоугольники */
+:root.dark-theme .role-card__list li::before {
+    background-color: transparent !important;
+    transform: rotate(45deg);
+    width: 8px;
+    height: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 0 !important;
+    top: 7px;
+}
+
+:root.dark-theme .role-card__list li:hover::before {
+    background-color: transparent !important;
+    border-color: var(--teal-blue);
+    box-shadow: 0 0 5px rgba(0, 215, 231, 0.5);
+}
+
+:root.dark-theme .role-card__section:nth-child(1) .role-card__list li::before,
+:root.dark-theme .role-card__section:nth-child(2) .role-card__list li::before,
+:root.dark-theme .role-card__section:nth-child(3) .role-card__list li::before {
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 0 !important;
+    transform: rotate(45deg);
+}
+
+/* Убираем все предыдущие стили для маркеров в темной теме и устанавливаем единый ромбовидный стиль */
+:root.dark-theme .role-card__list li::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    width: 6px !important;
+    height: 6px !important;
+    background-color: transparent !important;
+    transform: rotate(45deg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 0 !important;
+    top: 7px !important;
+}
+
+:root.dark-theme .role-card__list li:hover::before {
+    background-color: transparent !important;
+    border-color: var(--teal-blue) !important;
+    box-shadow: 0 0 5px rgba(0, 215, 231, 0.5) !important;
+}
+
+/* Переопределяем все возможные варианты маркеров для разных секций */
+:root.dark-theme .role-card__section:nth-child(1) .role-card__list li::before,
+:root.dark-theme .role-card__section:nth-child(2) .role-card__list li::before,
+:root.dark-theme .role-card__section:nth-child(3) .role-card__list li::before,
+:root.dark-theme .role-card:nth-child(1) .role-card__list li::before,
+:root.dark-theme .role-card:nth-child(2) .role-card__list li::before,
+:root.dark-theme .role-card:nth-child(3) .role-card__list li::before {
+    width: 6px !important;
+    height: 6px !important;
+    background-color: transparent !important;
+    transform: rotate(45deg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 0 !important;
+}
+
+/* Аналогично для состояния при наведении */
+:root.dark-theme .role-card__section:nth-child(1) .role-card__list li:hover::before,
+:root.dark-theme .role-card__section:nth-child(2) .role-card__list li:hover::before,
+:root.dark-theme .role-card__section:nth-child(3) .role-card__list li:hover::before,
+:root.dark-theme .role-card:nth-child(1) .role-card__list li:hover::before,
+:root.dark-theme .role-card:nth-child(2) .role-card__list li:hover::before,
+:root.dark-theme .role-card:nth-child(3) .role-card__list li:hover::before {
+    background-color: transparent !important;
+    border-color: var(--teal-blue) !important;
+}
+
+/* Исправляем цвет маркеров перед заголовками секций для Level 2 и Level 3 в темной теме */
+:root.dark-theme .role-card:nth-child(2) .role-card__section h4::before,
+:root.dark-theme .role-card:nth-child(3) .role-card__section h4::before {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+:root.dark-theme .role-card:nth-child(2) .role-card__section:hover h4::before,
+:root.dark-theme .role-card:nth-child(3) .role-card__section:hover h4::before {
+    background-color: var(--teal-blue) !important;
+    box-shadow: 0 0 8px var(--teal-blue);
+}
+
+/* Убедимся, что маркеры у первого уровня также имеют корректный цвет */
+:root.dark-theme .role-card:nth-child(1) .role-card__section h4::before {
+    background-color: #ffffff !important;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+:root.dark-theme .role-card:nth-child(1) .role-card__section:hover h4::before {
+    background-color: var(--teal-blue) !important;
+    box-shadow: 0 0 8px var(--teal-blue);
+}
+
+/* Добавляем белую рамку вокруг текста описания ролей в темной теме */
+:root.dark-theme .role-card__description {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+:root.dark-theme .role-card:hover .role-card__description {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Убедимся, что стили применяются для всех трех карточек */
+:root.dark-theme .role-card:nth-child(1) .role-card__description,
+:root.dark-theme .role-card:nth-child(2) .role-card__description,
+:root.dark-theme .role-card:nth-child(3) .role-card__description {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+:root.dark-theme .role-card:nth-child(1):hover .role-card__description,
+:root.dark-theme .role-card:nth-child(2):hover .role-card__description,
+:root.dark-theme .role-card:nth-child(3):hover .role-card__description {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Добавляем стили для иконки Achievements & Specialization (третий элемент) */
+.progression__item:nth-child(3) .progression__icon i {
+    color: var(--primary-blue);
+    transition: all 0.3s ease;
+}
+
+.progression__item:nth-child(3):hover .progression__icon i {
+    color: var(--teal-blue);
+}
+
+/* Стили для иконок в темной теме */
+:root.dark-theme .progression__item:nth-child(1) .progression__icon i,
+:root.dark-theme .progression__item:nth-child(2) .progression__icon i,
+:root.dark-theme .progression__item:nth-child(3) .progression__icon i {
+    color: #ffffff;
+}
+
+:root.dark-theme .progression__item:nth-child(1):hover .progression__icon i,
+:root.dark-theme .progression__item:nth-child(2):hover .progression__icon i,
+:root.dark-theme .progression__item:nth-child(3):hover .progression__icon i {
+    color: var(--teal-blue);
+}
+
+/* Если у иконки есть SVG, обрабатываем и его */
+.progression__item:nth-child(3) .progression__icon svg path {
+    fill: var(--primary-blue);
+    transition: all 0.3s ease;
+}
+
+:root.dark-theme .progression__item:nth-child(3) .progression__icon svg path {
+    fill: #ffffff;
+}
+
+.progression__item:nth-child(3):hover .progression__icon svg path {
+    fill: var(--teal-blue);
+}
+
+/* Установить синий цвет для всех иконок в прогрессии */
+.progression__icon i {
+    color: var(--primary-blue);
+}
+
+/* Убираю специфические правила для второй иконки */
+.progression__item:nth-child(2) .progression__icon i {
+    color: var(--primary-blue);
+}
+
+/* Убираю изменение цвета при наведении, для первой и второй иконки */
+.progression__item:nth-child(1) .progression__icon i,
+.progression__item:nth-child(2):hover .progression__icon i {
+    color: var(--primary-blue);
+}
+
+/* Третья иконка (Achievements & Specialization) - синяя */
+.progression__item:nth-child(3) .progression__icon i {
+    color: var(--primary-blue);
+}
+
+/* Убираю изменение цвета при наведении для третьей иконки */
+.progression__item:nth-child(3):hover .progression__icon i {
+    color: var(--primary-blue);
+}
+
+/* Для SVG путей тоже синий цвет */
+.progression__item .progression__icon svg path {
+    fill: var(--primary-blue);
+}
+
+.progression__item:hover .progression__icon svg path {
+    fill: var(--primary-blue);
+}
+
+.progression__item:nth-child(2) .progression__icon svg path,
+.progression__item:nth-child(3) .progression__icon svg path {
+    fill: var(--primary-blue);
+}
+
+.progression__item:nth-child(2):hover .progression__icon svg path,
+.progression__item:nth-child(3):hover .progression__icon svg path {
+    fill: var(--primary-blue);
+}
+
+/* В темной теме все иконки белые, без изменений при наведении */
+:root.dark-theme .progression__icon i {
+    color: #ffffff;
+}
+
+:root.dark-theme .progression__item:hover .progression__icon i {
+    color: #ffffff;
+}
+
+:root.dark-theme .progression__item .progression__icon svg path {
+    fill: #ffffff;
+}
+
+:root.dark-theme .progression__item:hover .progression__icon svg path {
+    fill: #ffffff;
+}
+
+/* Настройка иконок для Rewards System */
+/* Иконки для всех карточек в разделе Rewards синие в светлой теме */
+.rewards__card-icon i,
+.rewards__card-icon svg path {
+    color: var(--primary-blue);
+    fill: var(--primary-blue);
+}
+
+/* Переопределяем конкретно для второй карточки (Weekly Rewards) */
+.rewards__card:nth-child(2) .rewards__card-icon i {
+    color: var(--primary-blue) !important;
+}
+
+.rewards__card:nth-child(2) .rewards__card-icon svg path {
+    fill: var(--primary-blue) !important;
+}
+
+/* Переопределяем конкретно для третьей карточки (Monthly Rewards) */
+.rewards__card:nth-child(3) .rewards__card-icon i {
+    color: var(--primary-blue) !important;
+}
+
+.rewards__card:nth-child(3) .rewards__card-icon svg path {
+    fill: var(--primary-blue) !important;
+}
+
+/* Убираем изменение цвета при наведении */
+.rewards__card:hover .rewards__card-icon i,
+.rewards__card:nth-child(2):hover .rewards__card-icon i,
+.rewards__card:nth-child(3):hover .rewards__card-icon i {
+    color: var(--primary-blue) !important;
+}
+
+.rewards__card:hover .rewards__card-icon svg path,
+.rewards__card:nth-child(2):hover .rewards__card-icon svg path,
+.rewards__card:nth-child(3):hover .rewards__card-icon svg path {
+    fill: var(--primary-blue) !important;
+}
+
+/* Иконки в темной теме - белые */
+:root.dark-theme .rewards__card-icon i,
+:root.dark-theme .rewards__card-icon svg path {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* Убираем изменение цвета при наведении в темной теме */
+:root.dark-theme .rewards__card:hover .rewards__card-icon i,
+:root.dark-theme .rewards__card:nth-child(2):hover .rewards__card-icon i,
+:root.dark-theme .rewards__card:nth-child(3):hover .rewards__card-icon i {
+    color: #ffffff !important;
+}
+
+:root.dark-theme .rewards__card:hover .rewards__card-icon svg path,
+:root.dark-theme .rewards__card:nth-child(2):hover .rewards__card-icon svg path,
+:root.dark-theme .rewards__card:nth-child(3):hover .rewards__card-icon svg path {
+    fill: #ffffff !important;
+}
+
+/* Стиль для восклицательного знака в темной теме */
+:root.dark-theme .rewards__important::before {
+    display: none;
+}
+
+/* Полное переопределение всех стилей кнопки в темной теме */
+html body :root.dark-theme .nav .nav__container .nav__action .nav__button,
+:root.dark-theme .nav__button,
+:root.dark-theme .nav__button:link,
+:root.dark-theme .nav__button:visited,
+:root.dark-theme .nav__button:active,
+:root.dark-theme .nav__button:focus {
+    background-color: var(--primary-blue) !important;
+    color: #18448d !important;
+    border: 2px solid white !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+}
+
+html body :root.dark-theme .nav .nav__container .nav__action .nav__button:hover,
+:root.dark-theme .nav__button:hover {
+    background-color: var(--teal-blue) !important;
+    color: white !important;
+    border-color: white !important;
+}
+
+/* Мобильная версия */
+@media (max-width: 992px) {
+    html body :root.dark-theme .nav .nav__container .nav__action .nav__button,
+    :root.dark-theme .nav__button,
+    :root.dark-theme .nav__button:link,
+    :root.dark-theme .nav__button:visited,
+    :root.dark-theme .nav__button:active,
+    :root.dark-theme .nav__button:focus {
+        background-color: var(--primary-blue) !important;
+        color: #18448d !important;
+        border: 2px solid white !important;
+    }
 }
