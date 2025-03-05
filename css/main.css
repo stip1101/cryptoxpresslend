@@ -3453,3 +3453,963 @@ html body :root.dark-theme .nav .nav__container .nav__action .nav__button:hover,
         border: 2px solid white !important;
     }
 }
+
+/* Удаляем старые медиа-запросы и добавляем новые */
+
+/* Медиа-запросы для планшетов (992px и меньше) */
+@media (max-width: 992px) {
+    /* Предотвращение горизонтального скролла */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+    
+    /* Навигация */
+    .header {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .nav {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .nav__container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .nav__logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav__action {
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+    }
+    
+    .nav__toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--bg-color);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        padding: 6rem 2rem;
+        transition: right 0.4s ease-in-out;
+        z-index: 98;
+        overflow-y: auto;
+    }
+
+    .nav__menu.active {
+        right: 0;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    .nav__toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 99;
+    }
+
+    .nav__button {
+        padding: 0.75rem 1.5rem;
+        white-space: nowrap;
+        position: relative;
+        top: -2px;
+    }
+    
+    .theme-toggle {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 100;
+    }
+    
+    /* Секция About */
+    .about__container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .about__image {
+        order: -1;
+    }
+    
+    .about__features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Секция Roles */
+    .roles {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .roles__container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .roles__cards {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        width: 100%;
+    }
+    
+    .role-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        padding: 1.5rem;
+    }
+    
+    .role-card__description {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    
+    /* Секция Hero */
+    .hero {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .hero__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .hero__logo {
+        margin: 0 auto;
+    }
+    
+    /* Секция Progression */
+    .progression {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .progression__item {
+        flex-direction: column;
+        padding: 2rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .progression__item-left {
+        margin-bottom: 1.5rem;
+    }
+    
+    .progression__icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .progression__item-right {
+        padding-left: 0;
+    }
+    
+    .progression__item:hover .progression__item-right {
+        transform: translateY(0);
+    }
+    
+    /* Общие контейнеры */
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        box-sizing: border-box;
+    }
+    
+    /* Секция Rewards */
+    .rewards {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .rewards__cards {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .rewards__card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Медиа-запросы для мобильных устройств (768px и меньше) */
+@media (max-width: 768px) {
+    /* Общие стили */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Навигация */
+    .nav__container {
+        padding: 0.5rem 0;
+    }
+    
+    .nav__logo {
+        max-width: 120px;
+    }
+    
+    .nav__action {
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav__button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        position: relative;
+        top: -2px;
+    }
+    
+    /* Секция About */
+    .about__features {
+        grid-template-columns: 1fr;
+    }
+    
+    .about__title {
+        font-size: 2rem;
+    }
+    
+    /* Секция Roles */
+    .roles__title, 
+    .progression__title,
+    .rewards__title,
+    .steps__title {
+        font-size: 2rem;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Карточки ролей */
+    .role-card {
+        padding: 1.5rem;
+        overflow: hidden;
+        font-size: 0.95rem;
+    }
+    
+    .role-card__title {
+        font-size: 1.5rem;
+        word-wrap: break-word;
+        margin-bottom: 0.5rem;
+    }
+    
+    .role-card__level {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .role-card__description {
+        font-size: 0.95rem;
+        word-wrap: break-word;
+        width: 100%;
+        max-width: 100%;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+    }
+    
+    .role-card__section {
+        margin-bottom: 1.2rem;
+    }
+    
+    .role-card__section h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .role-card__list {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+        list-style-position: outside;
+    }
+    
+    .role-card__list li {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        padding-left: 0.3rem;
+    }
+    
+    .role-card__icon-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+    
+    /* Секция Footer */
+    .footer {
+        padding: 3rem 0 2rem;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .footer__links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .footer__column {
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer__title::after {
+        width: 40px;
+    }
+    
+    .footer__link {
+        font-size: 0.9rem;
+    }
+    
+    /* Секция CTA */
+    .cta {
+        padding: 4rem 0;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .cta__box {
+        padding: 2.5rem 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .cta__title {
+        font-size: 1.8rem;
+    }
+    
+    .cta__text {
+        font-size: 1rem;
+    }
+    
+    /* Секция Progression */
+    .progression__item {
+        margin-bottom: 1.5rem;
+    }
+    
+    .progression__item-left h3 {
+        font-size: 1.2rem;
+    }
+    
+    .progression__icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .progression__icon i {
+        font-size: 1.5rem;
+    }
+    
+    /* Секция Steps */
+    .steps {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .step {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .step__notice {
+        padding: 1rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Highlight стили */
+    .highlight {
+        padding: 0.2rem 0.5rem;
+        font-size: inherit;
+    }
+    
+    .progression__item-right .highlight {
+        display: inline-block;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Медиа-запросы для маленьких мобильных устройств (480px и меньше) */
+@media (max-width: 480px) {
+    /* Общие стили */
+    html {
+        font-size: 14px;
+    }
+    
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+    
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Навигация */
+    .nav__container {
+        padding: 0.5rem 0;
+    }
+    
+    .nav__logo {
+        max-width: 100px;
+    }
+    
+    .nav__action {
+        margin-right: 0.8rem;
+    }
+    
+    .nav__button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        position: relative;
+        top: -1px;
+    }
+    
+    .nav__toggle {
+        font-size: 1.3rem;
+    }
+    
+    .nav__menu {
+        width: 85%;
+        padding: 5rem 1.5rem;
+    }
+    
+    /* Карточки ролей */
+    .role-card {
+        padding: 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .role-card__title {
+        font-size: 1.3rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .role-card__level {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.7rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .role-card__description {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+    
+    .role-card__section {
+        margin-bottom: 1rem;
+    }
+    
+    .role-card__section h4 {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .role-card__list {
+        padding-left: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .role-card__list li {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 0.4rem;
+        padding-left: 0.2rem;
+    }
+    
+    .role-card__icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+    
+    /* Секция Hero */
+    .hero__title-large {
+        font-size: 2.2rem;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .hero__title-medium {
+        font-size: 1.6rem;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Секция Progression */
+    .progression__icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .progression__icon i {
+        font-size: 1.2rem;
+    }
+    
+    .progression__item-left h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Секция Highlight */
+    .highlight {
+        padding: 0.15rem 0.4rem;
+        font-size: 0.9em;
+    }
+    
+    .progression__item-right .highlight {
+        margin: 0.3rem 0;
+    }
+    
+    /* Секция CTA */
+    .cta__box {
+        padding: 1.5rem 1rem;
+    }
+    
+    .cta__title {
+        font-size: 1.5rem;
+    }
+    
+    .cta__text {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta__button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Секция Footer */
+    .footer__links {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Секция Rewards */
+    .rewards__cards {
+        gap: 1.5rem;
+    }
+    
+    .rewards__card {
+        padding: 1.5rem;
+    }
+}
+
+/* Медиа-запросы для очень маленьких устройств (360px и меньше) */
+@media (max-width: 360px) {
+    html {
+        font-size: 13px;
+    }
+    
+    /* Навигация */
+    .nav__logo {
+        max-width: 90px;
+    }
+    
+    .nav__button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .nav__toggle {
+        font-size: 1.2rem;
+    }
+    
+    /* Карточки ролей */
+    .role-card {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .role-card__title {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .role-card__level {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.6rem;
+        margin-bottom: 0.7rem;
+    }
+    
+    .role-card__description {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.25;
+    }
+    
+    .role-card__section {
+        margin-bottom: 0.8rem;
+    }
+    
+    .role-card__section h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .role-card__list {
+        padding-left: 1rem;
+        margin-bottom: 0.7rem;
+    }
+    
+    .role-card__list li {
+        font-size: 0.8rem;
+        line-height: 1.2;
+        margin-bottom: 0.3rem;
+        padding-left: 0.2rem;
+    }
+    
+    .role-card__icon-wrapper {
+        width: 45px;
+        height: 45px;
+    }
+    
+    /* Секция Hero */
+    .hero__title-large {
+        font-size: 2rem;
+    }
+    
+    .hero__title-medium {
+        font-size: 1.4rem;
+    }
+    
+    .hero__text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Исправление для текста в карточках, чтобы он не выходил за границы */
+.role-card__description,
+.role-card__list li,
+.role-card__section h4,
+.role-card__title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Исправление для ссылок в карточках */
+.role-card__list li a {
+    word-break: break-word;
+}
+
+/* Исправление для Telegram app текста */
+.role-card__list li a[href*="telegram"] {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Дополнительные исправления для карточек Ambassador Roles */
+@media (max-width: 768px) {
+    /* Изменяем структуру карточек на вертикальную */
+    .role-card {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        overflow: hidden;
+        font-size: 0.95rem;
+    }
+    
+    .role-card__main {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .role-card__section {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Уменьшаем отступы и размеры для лучшего отображения */
+    .role-card__list {
+        margin-left: 0;
+        padding-left: 1.2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .role-card__list li {
+        margin-bottom: 0.4rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Улучшаем отображение текста в карточках */
+    .role-card__description {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Уменьшаем размер шрифта для Telegram app */
+    .role-card__list li a[href*="telegram"] {
+        font-size: 0.85rem;
+        word-break: break-all;
+    }
+    
+    /* Изменяем структуру секций внутри карточки */
+    .role-card__section {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Изменяем структуру заголовков и списков */
+    .role-card__section h4 {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* Изменяем структуру элементов списка */
+    .role-card__list li {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Добавляем перенос слов для всех текстовых элементов */
+    .role-card__title,
+    .role-card__level,
+    .role-card__description,
+    .role-card__section h4,
+    .role-card__list li,
+    .role-card__list li a {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        hyphens: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Уменьшаем размеры для маленьких экранов */
+    .role-card {
+        padding: 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .role-card__list {
+        padding-left: 1rem;
+    }
+    
+    .role-card__list li {
+        font-size: 0.8rem;
+        line-height: 1.25;
+        margin-bottom: 0.35rem;
+    }
+    
+    .role-card__description {
+        font-size: 0.85rem;
+        line-height: 1.25;
+    }
+    
+    /* Уменьшаем размер шрифта для Telegram app */
+    .role-card__list li a[href*="telegram"] {
+        font-size: 0.8rem;
+        word-break: break-all;
+    }
+    
+    /* Дополнительные стили для улучшения читаемости */
+    .role-card__section {
+        margin-bottom: 1rem;
+    }
+    
+    .role-card__section h4 {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Еще больше уменьшаем размеры для очень маленьких экранов */
+    .role-card {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .role-card__list {
+        padding-left: 0.8rem;
+    }
+    
+    .role-card__list li {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        margin-bottom: 0.3rem;
+    }
+    
+    .role-card__description {
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
+    
+    /* Уменьшаем размер шрифта для Telegram app */
+    .role-card__list li a[href*="telegram"] {
+        font-size: 0.75rem;
+        word-break: break-all;
+    }
+    
+    /* Дополнительные стили для улучшения читаемости */
+    .role-card__section {
+        margin-bottom: 0.8rem;
+    }
+    
+    .role-card__section h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Добавляем специальные стили для элементов с длинным текстом */
+@media (max-width: 768px) {
+    /* Стили для Telegram app ссылки */
+    .role-card__list li a[href*="telegram"] {
+        display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+        hyphens: auto;
+    }
+    
+    /* Стили для длинных слов в описании */
+    .role-card__description {
+        word-break: break-word;
+    }
+    
+    /* Стили для элементов списка с длинным текстом */
+    .role-card__list li {
+        word-break: break-word;
+    }
+    
+    /* Стили для заголовков с длинным текстом */
+    .role-card__section h4 {
+        word-break: break-word;
+    }
+    
+    /* Стили для всех текстовых элементов */
+    .role-card * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Изменяем структуру карточки для вертикального отображения */
+    .role-card {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Изменяем структуру секций Benefits и Requirements */
+    .role-card__section:nth-child(1),
+    .role-card__section:nth-child(2) {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        float: none;
+        clear: both;
+    }
+}
+
+/* Исправление для текста в карточках, чтобы он не выходил за границы */
+.role-card__description,
+.role-card__list li,
+.role-card__section h4,
+.role-card__title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Исправление для ссылок в карточках */
+.role-card__list li a {
+    word-break: break-word;
+}
+
+/* Исправление для Telegram app текста */
+.role-card__list li a[href*="telegram"] {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+/* Центрирование кнопки Join Now в навбаре */
+.nav__button {
+    position: relative;
+    top: -3px;
+}
+
+@media (max-width: 768px) {
+    .nav__button {
+        top: -2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav__button {
+        top: -1px;
+    }
+}
