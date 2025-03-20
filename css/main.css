@@ -1750,7 +1750,8 @@ html, body {
 .rewards__cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .rewards__card {
@@ -4665,5 +4666,274 @@ html body :root.dark-theme .nav .nav__container .nav__action .nav__button:hover,
     
     .content-disclaimer__text {
         font-size: 0.9rem !important;
+    }
+}
+
+/* Evaluation System Section */
+.evaluation {
+    padding: 6rem 0;
+    background-color: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.evaluation__container {
+    position: relative;
+    z-index: 2;
+}
+
+.evaluation__content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.evaluation__title {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.evaluation__title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--teal-blue));
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+}
+
+.evaluation__intro, .evaluation__text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.evaluation__subtitle {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.evaluation__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.evaluation-card {
+    background: var(--card-bg);
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.evaluation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(var(--primary-blue-rgb), 0.03), rgba(var(--teal-blue-rgb), 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.evaluation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.evaluation-card:hover::before {
+    opacity: 1;
+}
+
+.evaluation-card__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 2;
+}
+
+.evaluation-card__icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(var(--primary-blue-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.evaluation-card:hover .evaluation-card__icon {
+    transform: scale(1.1);
+    background: rgba(var(--primary-blue-rgb), 0.15);
+}
+
+.evaluation-card__title {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.evaluation-card__content {
+    position: relative;
+    z-index: 2;
+}
+
+.evaluation-card__content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.evaluation__types-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.evaluation-type {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(var(--primary-blue-rgb), 0.05);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.evaluation-type:hover {
+    background: rgba(var(--primary-blue-rgb), 0.08);
+    transform: translateY(-3px);
+}
+
+.evaluation-type__icon {
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.evaluation-type__content h4 {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.evaluation-type__content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.evaluation__format {
+    margin-top: 2rem;
+    background: rgba(var(--teal-blue-rgb), 0.05);
+    border-radius: 0.75rem;
+    padding: 2rem;
+}
+
+/* Темная тема */
+:root.dark-theme .evaluation-card {
+    background: var(--card-bg-dark);
+}
+
+:root.dark-theme .evaluation-type {
+    background: rgba(var(--primary-blue-rgb), 0.08);
+}
+
+:root.dark-theme .evaluation-type:hover {
+    background: rgba(var(--primary-blue-rgb), 0.12);
+}
+
+:root.dark-theme .evaluation__format {
+    background: rgba(var(--teal-blue-rgb), 0.08);
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .evaluation {
+        padding: 5rem 0;
+    }
+    
+    .evaluation__title {
+        font-size: 2.2rem;
+    }
+    
+    .evaluation__subtitle {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .evaluation {
+        padding: 4rem 0;
+    }
+    
+    .evaluation__title {
+        font-size: 2rem;
+    }
+    
+    .evaluation__subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .evaluation__intro, .evaluation__text {
+        font-size: 1rem;
+    }
+    
+    .evaluation-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .evaluation {
+        padding: 3rem 0;
+    }
+    
+    .evaluation__title {
+        font-size: 1.75rem;
+    }
+    
+    .evaluation__subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .evaluation-card__title {
+        font-size: 1.15rem;
+    }
+}
+
+/* Обновляем адаптивность для карточек */
+@media (max-width: 768px) {
+    .evaluation__cards {
+        grid-template-columns: 1fr;
     }
 }
